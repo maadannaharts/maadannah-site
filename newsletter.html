@@ -245,8 +245,39 @@
     color:#8a8270;
   }
 
+  .unsub-note{
+    font-size:0.78rem;
+    line-height:1.5;
+    color:#8a8270;
+    margin:-4px 0 0;
+  }
+
   /* hide honeypot field from view but keep it functional */
   .hp-field{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;}
+
+  .consent-row{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+  }
+  .consent-row input[type="checkbox"]{
+    margin-top:3px;
+    width:16px; height:16px;
+    accent-color:var(--terracotta);
+    flex-shrink:0;
+    cursor:pointer;
+  }
+  .consent-row label{
+    font-family:'Work Sans', sans-serif;
+    font-size:0.85rem;
+    line-height:1.55;
+    color:#4a4230;
+    text-transform:none;
+    letter-spacing:normal;
+    font-weight:400;
+    cursor:pointer;
+  }
+  .consent-row a{color:var(--terracotta); text-decoration:underline;}
 
   @media (max-width: 700px){
     .signup-card{padding:40px 26px;}
@@ -325,8 +356,8 @@
 <section class="intro">
   <div class="wrap">
     <span class="eyebrow">Join The Thread</span>
-    <h1>Add yourself <em>to the thread.</em></h1>
-    <p>First look at new pieces, in-progress projects, and stories from the cultures that shape every piece.</p>
+    <h1>Every piece has <em>a thread to follow.</em></h1>
+    <p>New pieces, new projects, and the stories behind them.</p>
   </div>
 </section>
 
@@ -345,7 +376,7 @@
         <span style="background:#2e5f58;"></span>
       </div>
       <h2>Add yourself to the thread.</h2>
-      <p class="lede">New pieces, new projects, and the culture behind them — carried straight to your inbox.</p>
+      <p class="lede">Get a first look at new pieces, in-progress projects, and stories from the cultures that shape every piece.</p>
 
       <form id="sib-form" method="POST" action="https://9fd2b6bf.sibforms.com/serve/MUIFAMSbO4YA2zIdKB9ENaFTUpzLLjT8xAVceQu-vFlkGpNpeWFWjq78GGdHevu_nyTc_g78eRc1l5ycHpQJv95tNwgnaUU0tGrVLk0XrHFHG_KI8OPlRPXAuQcG35a-dysf2gt5f51YQZ_kVRGjBxJwcKvjT4iR-Su_AGj1DBMpJ9FabEdIv6XZLWrnfX7muKz2X3erVYsn223wyw==" class="maad-form">
 
@@ -353,6 +384,12 @@
           <label for="EMAIL">Email address</label>
           <input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" value="" placeholder="you@example.com" data-required="true" required />
         </div>
+
+        <div class="consent-row">
+          <input type="checkbox" id="consent" required>
+          <label for="consent">I agree to receive Ma'adannah's newsletter emails and accept the <a href="privacy.html">privacy policy</a>.</label>
+        </div>
+        <p class="unsub-note">You may leave the thread at any time using the link in our emails.</p>
 
         <button type="submit">Join the Thread →</button>
 
@@ -362,7 +399,7 @@
         <input type="hidden" name="html_type" value="simple">
       </form>
 
-      <p class="privacy-note">Leave the thread anytime, with one click.</p>
+      <p class="privacy-note">Don't see our confirmation email? Check your spam or promotions folder, and add us to your contacts so future notes land where they should.</p>
     </div>
   </div>
 </section>
@@ -379,6 +416,7 @@
         <a href="index.html#vision">Vision</a>
         <a href="mailto:amadannaharts@gmail.com">Email</a>
         <a href="https://instagram.com/maadannahbeads" target="_blank" rel="noopener">Instagram</a>
+        <a href="privacy.html">Privacy</a>
       </div>
     </div>
     <div class="footer-bottom">
