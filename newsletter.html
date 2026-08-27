@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join the Thread — Ma'adannah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c2440;
+    --ink-soft:#2a3357;
+    --sand:#ede3d0;
+    --sand-2:#f5efe2;
+    --terracotta:#c1602e;
+    --gold:#b08d46;
+    --teal:#2e5f58;
+    --charcoal:#241f16;
+    --cream-text:#f3ecdd;
+    --line: rgba(28,36,64,0.14);
+    --line-dark: rgba(243,236,221,0.16);
+    --maxw: 1180px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--sand-2);
+    color:var(--charcoal);
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    text-transform:uppercase;
+    font-size:0.72rem;
+    letter-spacing:0.22em;
+    font-weight:700;
+  }
+
+  a{color:inherit;}
+  img{display:block; max-width:100%;}
+
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 6vw;
+  }
+
+  /* ---------- BEAD THREAD DIVIDER ---------- */
+  .bead-thread{width:100%; height:34px; display:block;}
+  .bead-thread circle.thread-line-bg{fill:none;}
+
+  /* ---------- NAV ---------- */
+  header.site-nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(245,239,226,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:18px 6vw;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .wordmark{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.35rem;
+    letter-spacing:0.01em;
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+    text-decoration:none;
+    color:var(--charcoal);
+  }
+  .wordmark .dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--terracotta);
+    display:inline-block;
+    transform:translateY(-2px);
+  }
+  nav.links{display:flex; gap:34px; align-items:center;}
+  nav.links a{
+    font-size:0.88rem;
+    text-decoration:none;
+    color:var(--charcoal);
+    position:relative;
+    padding:4px 0;
+  }
+  nav.links a::after{
+    content:"";
+    position:absolute;
+    left:0; right:0; bottom:-2px;
+    height:1px;
+    background:var(--terracotta);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform 0.3s ease;
+  }
+  nav.links a:hover::after{transform:scaleX(1);}
+  nav.links a.active::after{transform:scaleX(1);}
+  .nav-cta{
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    border:1px solid var(--charcoal);
+    padding:9px 16px;
+    border-radius:100px;
+    text-decoration:none;
+    transition:background 0.25s ease, color 0.25s ease;
+  }
+  .nav-cta:hover{background:var(--charcoal); color:var(--sand-2);}
+  .menu-toggle{display:none; background:none; border:none; cursor:pointer; padding:6px;}
+  .menu-toggle span{display:block; width:22px; height:2px; background:var(--charcoal); margin:5px 0;}
+
+  /* ---------- INTRO ---------- */
+  .intro{
+    padding:100px 0 70px;
+    background:var(--ink);
+    color:var(--cream-text);
+  }
+  .intro .eyebrow{color:var(--gold); display:block; margin-bottom:22px;}
+  .intro h1{
+    font-size:clamp(2.2rem, 5.5vw, 4rem);
+    line-height:1.05;
+    max-width:780px;
+  }
+  .intro h1 em{font-style:italic; font-weight:400; color:var(--terracotta);}
+  .intro p{
+    margin-top:26px;
+    max-width:520px;
+    font-size:1.08rem;
+    line-height:1.65;
+    color:rgba(243,236,221,0.8);
+    font-weight:300;
+  }
+
+  /* ---------- FORM SECTION ---------- */
+  .signup-section{padding:90px 0 110px;}
+  .signup-card{
+    max-width:560px;
+    margin:0 auto;
+    background:var(--sand);
+    border-radius:10px;
+    padding:52px 44px;
+    text-align:center;
+  }
+  .signup-card .bead-icon-row{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:26px;
+  }
+  .signup-card .bead-icon-row span{
+    width:11px; height:11px; border-radius:50%;
+  }
+  .signup-card h2{
+    font-size:clamp(1.5rem, 2.6vw, 1.9rem);
+    color:var(--ink);
+    margin-bottom:14px;
+  }
+  .signup-card p.lede{
+    font-size:0.98rem;
+    line-height:1.6;
+    color:#4a4230;
+    max-width:40ch;
+    margin:0 auto 34px;
+  }
+
+  /* form field styling */
+  .maad-form{display:flex; flex-direction:column; gap:16px; text-align:left;}
+  .maad-form label{
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink);
+    margin-bottom:8px;
+    display:block;
+  }
+  .maad-form input[type="text"]{
+    width:100%;
+    padding:15px 16px;
+    border:1px solid var(--line);
+    border-radius:6px;
+    background:var(--sand-2);
+    font-family:'Work Sans', sans-serif;
+    font-size:1rem;
+    color:var(--charcoal);
+    transition:border-color 0.25s ease;
+  }
+  .maad-form input[type="text"]:focus{
+    outline:none;
+    border-color:var(--terracotta);
+  }
+  .maad-form input[type="text"]::placeholder{color:#9a927e;}
+  .maad-form .field-hint{
+    font-size:0.78rem;
+    color:#8a8270;
+    margin-top:4px;
+  }
+  .maad-form button{
+    margin-top:8px;
+    background:var(--ink);
+    color:var(--cream-text);
+    border:none;
+    padding:16px 24px;
+    border-radius:100px;
+    font-family:'Space Mono', monospace;
+    font-size:0.78rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:background 0.3s ease, transform 0.3s ease;
+  }
+  .maad-form button:hover{background:var(--terracotta); transform:translateY(-2px);}
+
+  .privacy-note{
+    margin-top:24px;
+    font-size:0.78rem;
+    line-height:1.5;
+    color:#8a8270;
+  }
+
+  /* hide honeypot field from view but keep it functional */
+  .hp-field{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;}
+
+  @media (max-width: 700px){
+    .signup-card{padding:40px 26px;}
+    nav.links{
+      position:fixed;
+      top:64px; left:0; right:0;
+      background:var(--sand-2);
+      flex-direction:column;
+      align-items:flex-start;
+      padding:26px 6vw 30px;
+      gap:20px;
+      border-bottom:1px solid var(--line);
+      transform:translateY(-130%);
+      transition:transform 0.35s ease;
+      z-index:40;
+    }
+    nav.links.open{transform:translateY(0);}
+    .menu-toggle{display:block;}
+    .nav-cta{display:none;}
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--charcoal);
+    color:rgba(243,236,221,0.6);
+    padding:56px 0 34px;
+  }
+  .footer-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap:30px;
+    padding-bottom:36px;
+    border-bottom:1px solid rgba(243,236,221,0.14);
+  }
+  .footer-word{
+    font-family:'Fraunces', serif;
+    font-size:1.4rem;
+    color:var(--cream-text);
+  }
+  .footer-links{display:flex; gap:30px; flex-wrap:wrap;}
+  .footer-links a{font-size:0.85rem; text-decoration:none; color:rgba(243,236,221,0.75);}
+  .footer-links a:hover{color:var(--terracotta);}
+  .footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    padding-top:26px;
+    font-size:0.78rem;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="wordmark">Ma'adannah<span class="dot"></span></a>
+    <nav class="links" id="navLinks">
+      <a href="index.html#about">About</a>
+      <a href="index.html#create">What We Create</a>
+      <a href="index.html#collection">The Collection</a>
+      <a href="index.html#philosophy">Philosophy</a>
+      <a href="index.html#vision">Vision</a>
+      <a href="newsletter.html" class="active" style="font-weight:600;">Join the Thread</a>
+    </nav>
+    <a href="index.html#contact" class="nav-cta">Get in touch</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="wrap">
+    <span class="eyebrow">Join The Thread</span>
+    <h1>Add yourself <em>to the thread.</em></h1>
+    <p>First look at new pieces, in-progress projects, and stories from the cultures that shape every piece.</p>
+  </div>
+</section>
+
+<svg class="bead-thread on-dark" viewBox="0 0 1200 34" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="background:var(--ink);">
+  <line class="thread-line-bg" x1="0" y1="17" x2="1200" y2="17" stroke="rgba(243,236,221,0.18)" stroke-width="1"/>
+  <g id="beadRowNewsletter"></g>
+</svg>
+
+<!-- SIGNUP FORM -->
+<section class="signup-section">
+  <div class="wrap">
+    <div class="signup-card">
+      <div class="bead-icon-row">
+        <span style="background:#c1602e;"></span>
+        <span style="background:#b08d46;"></span>
+        <span style="background:#2e5f58;"></span>
+      </div>
+      <h2>Add yourself to the thread.</h2>
+      <p class="lede">New pieces, new projects, and the culture behind them — carried straight to your inbox.</p>
+
+      <form id="sib-form" method="POST" action="https://9fd2b6bf.sibforms.com/serve/MUIFAMSbO4YA2zIdKB9ENaFTUpzLLjT8xAVceQu-vFlkGpNpeWFWjq78GGdHevu_nyTc_g78eRc1l5ycHpQJv95tNwgnaUU0tGrVLk0XrHFHG_KI8OPlRPXAuQcG35a-dysf2gt5f51YQZ_kVRGjBxJwcKvjT4iR-Su_AGj1DBMpJ9FabEdIv6XZLWrnfX7muKz2X3erVYsn223wyw==" class="maad-form">
+
+        <div>
+          <label for="EMAIL">Email address</label>
+          <input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" value="" placeholder="you@example.com" data-required="true" required />
+        </div>
+
+        <button type="submit">Join the Thread →</button>
+
+        <!-- Required by Brevo: spam-trap honeypot field, must stay empty and hidden -->
+        <input type="text" name="email_address_check" value="" class="hp-field" tabindex="-1" autocomplete="off">
+        <input type="hidden" name="locale" value="en">
+        <input type="hidden" name="html_type" value="simple">
+      </form>
+
+      <p class="privacy-note">Leave the thread anytime, with one click.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <a href="index.html" class="footer-word" style="text-decoration:none;">Ma'adannah</a>
+      <div class="footer-links">
+        <a href="index.html#about">About</a>
+        <a href="index.html#create">What We Create</a>
+        <a href="index.html#collection">The Collection</a>
+        <a href="index.html#philosophy">Philosophy</a>
+        <a href="index.html#vision">Vision</a>
+        <a href="mailto:amadannaharts@gmail.com">Email</a>
+        <a href="https://instagram.com/maadannahbeads" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Ma'adannah. Sweet influence, bold design, global spirit.</span>
+      <span>Handcrafted heritage accessories</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  function buildBeadRow(id, count){
+    const g = document.getElementById(id);
+    if(!g) return;
+    const colors = ['#c1602e', '#b08d46', '#2e5f58', '#1c2440', '#c1602e', '#b08d46'];
+    const spacing = 1200 / count;
+    let html = '';
+    for(let i=0; i<count; i++){
+      const x = spacing * i + spacing/2;
+      const r = (i % 3 === 0) ? 6 : 4;
+      const color = colors[i % colors.length];
+      html += `<circle cx="${x}" cy="17" r="${r}" fill="${color}" />`;
+    }
+    g.innerHTML = html;
+  }
+  buildBeadRow('beadRowNewsletter', 40);
+</script>
+
+</body>
+</html>
