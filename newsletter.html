@@ -238,6 +238,31 @@
   }
   .maad-form button:hover{background:var(--terracotta); transform:translateY(-2px);}
 
+  .sib-form-message-panel{
+    display:none;
+    padding:14px 16px;
+    border-radius:6px;
+    font-size:0.9rem;
+    margin-bottom:20px;
+    text-align:left;
+  }
+  .sib-form-message-panel.msg-success{
+    background:rgba(46,95,88,0.12);
+    color:var(--teal);
+    border:1px solid rgba(46,95,88,0.3);
+  }
+  .sib-form-message-panel.msg-error{
+    background:rgba(193,96,46,0.1);
+    color:var(--terracotta);
+    border:1px solid rgba(193,96,46,0.3);
+  }
+
+  .captcha-wrap{
+    display:flex;
+    justify-content:center;
+    margin:4px 0;
+  }
+
   .privacy-note{
     margin-top:24px;
     font-size:0.78rem;
@@ -378,7 +403,10 @@
       <h2>Add yourself to the thread.</h2>
       <p class="lede">Get a first look at new pieces, in-progress projects, and stories from the cultures that shape every piece.</p>
 
-      <form id="sib-form" method="POST" action="https://9fd2b6bf.sibforms.com/serve/MUIFAMSbO4YA2zIdKB9ENaFTUpzLLjT8xAVceQu-vFlkGpNpeWFWjq78GGdHevu_nyTc_g78eRc1l5ycHpQJv95tNwgnaUU0tGrVLk0XrHFHG_KI8OPlRPXAuQcG35a-dysf2gt5f51YQZ_kVRGjBxJwcKvjT4iR-Su_AGj1DBMpJ9FabEdIv6XZLWrnfX7muKz2X3erVYsn223wyw==" class="maad-form">
+      <div id="success-message" class="sib-form-message-panel msg-success">Your subscription has been successful.</div>
+      <div id="error-message" class="sib-form-message-panel msg-error">Your subscription could not be saved. Please try again.</div>
+
+      <form id="sib-form" method="POST" action="https://9fd2b6bf.sibforms.com/serve/MUIFAMSbO4YA2zIdKB9ENaFTUpzLLjT8xAVceQu-vFlkGpNpeWFWjq78GGdHevu_nyTc_g78eRc1l5ycHpQJv95tNwgnaUU0tGrVLk0XrHFHG_KI8OPlRPXAuQcG35a-dysf2gt5f51YQZ_kVRGjBxJwcKvjT4iR-Su_AGj1DBMpJ9FabEdIv6XZLWrnfX7muKz2X3erVYsn223wyw==" data-type="subscription" class="maad-form">
 
         <div>
           <label for="EMAIL">Email address</label>
@@ -391,12 +419,21 @@
         </div>
         <p class="unsub-note">You may leave the thread at any time using the link in our emails.</p>
 
+        <div class="captcha-wrap">
+          <script>
+            function handleCaptchaResponse() {
+              var event = new Event('captchaChange');
+              document.getElementById('sib-captcha').dispatchEvent(event);
+            }
+          </script>
+          <div class="g-recaptcha sib-visible-recaptcha" id="sib-captcha" data-sitekey="0x4AAAAAAEeBc2akfCUtrBDt" data-callback="handleCaptchaResponse"></div>
+        </div>
+
         <button type="submit">Join the Thread →</button>
 
         <!-- Required by Brevo: spam-trap honeypot field, must stay empty and hidden -->
         <input type="text" name="email_address_check" value="" class="hp-field" tabindex="-1" autocomplete="off">
         <input type="hidden" name="locale" value="en">
-        <input type="hidden" name="html_type" value="simple">
       </form>
 
       <p class="privacy-note">Don't see our confirmation email? Check your spam or promotions folder, and add us to your contacts so future notes land where they should.</p>
@@ -420,11 +457,34 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Ma'adannah. Sweet influence, bold design, global spirit.</span>
+      <span>© 2026 Ma'adannah. Sweet influence, bold design, made to stand out.</span>
       <span>Handcrafted heritage accessories</span>
     </div>
   </div>
 </footer>
+
+<!-- Brevo form logic: required for validation, captcha handling, and success/error messaging -->
+<script>
+  window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';
+  window.LOCALE = 'en';
+  window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
+  window.REQUIRED_ERROR_MESSAGE = "This field cannot be left blank. ";
+  window.GENERIC_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
+  window.INVALID_NUMBER = "The information provided is invalid. Please review the field format and try again.";
+  window.INVALID_DATE = "Please enter a valid date";
+  window.REQUIRED_MULTISELECT_MESSAGE = 'Please select at least 1 option';
+  window.translation = {
+    common: {
+      selectedList: '{quantity} list selected',
+      selectedLists: '{quantity} lists selected',
+      selectedOption: '{quantity} selected',
+      selectedOptions: '{quantity} selected',
+    }
+  };
+  var AUTOHIDE = Boolean(1);
+</script>
+<script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+<script src="https://www.google.com/recaptcha/api.js?hl=en"></script>
 
 <script>
   const toggle = document.getElementById('menuToggle');
